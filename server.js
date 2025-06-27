@@ -4,7 +4,7 @@ const request = require('request');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.get('/ibiza', (req, res) => {
+app.get('/', (req, res) => {
   const url = 'http://95.163.208.18:8000/;stream/1';
   request
     .get(url)
