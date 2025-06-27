@@ -4,13 +4,16 @@ const request = require('request');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.get('/', (req, res) => {
-  const url = 'http://95.163.208.18:8000/;stream/1';
+app.get('/ibiza', (req, res) => {
+  const url = 'http://air.radiorecord.ru:805/ibiza_320';
   request
     .get(url)
     .on('error', (err) => {
       console.error('Stream error:', err);
       res.sendStatus(500);
+    })
+    .on('response', (response) => {
+      res.setHeader('Content-Type', 'audio/mpeg');
     })
     .pipe(res);
 });
